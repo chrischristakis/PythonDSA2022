@@ -25,7 +25,7 @@ class LinkedList:
         self.head = newhead
         self.length += 1
 
-    # O(n)
+    # O(n). If we had access to the Node wed want to insert to, then its O(1)
     def insert(self, index, val):
         # Edge case, if index = 0, we'll have to just use our prepend method.
         if index == 0:
@@ -41,7 +41,7 @@ class LinkedList:
         leader.next = newnode
         self.length += 1
 
-    # O(n)
+    # O(1)
     def delete(self, index):
         # Edge case if index = 0, we cant use traverse_to(index-1). So just replace head.
         if index == 0:
