@@ -4,6 +4,7 @@ class Node:
         self.right = None
         self.value = val
 
+
 class BinarySearchTree:
     def __init__(self):
         self.root = None
@@ -41,6 +42,32 @@ class BinarySearchTree:
 
         return None
 
+    def breadth_first_search(self):
+        result = []
+        queue = [self.root]  # This queue can run out of memory for a very wide tree.
+
+        while len(queue) > 0:
+            curr = queue.pop(0)
+            result.append(curr.value)
+            if curr.left:
+                queue.append(curr.left)
+            if curr.right:
+                queue.append(curr.right)
+        print(result)
+
+    def breadth_first_search_r(self, queue, list):
+        if len(queue) == 0:
+            return list
+
+        curr = queue.pop(0)
+        list.append(curr.value)
+        if curr.left:
+            queue.append(curr.left)
+        if curr.right:
+            queue.append(curr.right)
+
+        return self.breadth_first_search_r(queue, list)
+
 
 # IGNORE FOR NOW
 def print_tree(root):
@@ -68,10 +95,11 @@ def print_tree(root):
 tree = BinarySearchTree()
 tree.insert(9)
 tree.insert(4)
-tree.insert(20)
-tree.insert(1)
 tree.insert(6)
+tree.insert(20)
 tree.insert(170)
 tree.insert(15)
-print_tree(tree.root)
+tree.insert(1)
 print(tree.lookup(9))
+tree.breadth_first_search()
+print(tree.breadth_first_search_r([tree.root], []))
