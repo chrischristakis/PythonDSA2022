@@ -68,6 +68,30 @@ class BinarySearchTree:
 
         return self.breadth_first_search_r(queue, list)
 
+    def dfs_inorder(self, node, list):
+        if node.left:
+            self.dfs_inorder(node.left, list)
+        list.append(node.value)
+        if node.right:
+            self.dfs_inorder(node.right, list)
+        return list
+
+    def dfs_preorder(self, node, list):
+        list.append(node.value)
+        if node.left:
+            self.dfs_preorder(node.left, list)
+        if node.right:
+            self.dfs_preorder(node.right, list)
+        return list
+
+    def dfs_postorder(self, node, list):
+        if node.left:
+            self.dfs_postorder(node.left, list)
+        if node.right:
+            self.dfs_postorder(node.right, list)
+        list.append(node.value)
+        return list
+
 
 # IGNORE FOR NOW
 def print_tree(root):
@@ -100,6 +124,8 @@ tree.insert(20)
 tree.insert(170)
 tree.insert(15)
 tree.insert(1)
-print(tree.lookup(9))
 tree.breadth_first_search()
 print(tree.breadth_first_search_r([tree.root], []))
+print(tree.dfs_inorder(tree.root, []))
+print(tree.dfs_preorder(tree.root, []))
+print(tree.dfs_postorder(tree.root, []))
