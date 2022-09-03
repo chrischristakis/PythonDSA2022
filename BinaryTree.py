@@ -92,7 +92,6 @@ class BinarySearchTree:
         list.append(node.value)
         return list
 
-
 # IGNORE FOR NOW
 def print_tree(root):
     quene = []
@@ -116,6 +115,18 @@ def print_tree(root):
     print('\n')
 
 
+def is_valid_bst(root):
+    def valid(node, min, max):
+        if not node:
+            return True
+        if not (min < node.value < max):
+            return False
+
+        return valid(node.left, min, node.value) and valid(node.right, node.value, max)
+
+    return valid(root, float("-inf"), float("inf"))
+
+
 tree = BinarySearchTree()
 tree.insert(9)
 tree.insert(4)
@@ -129,3 +140,4 @@ print(tree.breadth_first_search_r([tree.root], []))
 print(tree.dfs_inorder(tree.root, []))
 print(tree.dfs_preorder(tree.root, []))
 print(tree.dfs_postorder(tree.root, []))
+print(is_valid_bst(tree.root))
